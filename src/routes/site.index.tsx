@@ -11,13 +11,13 @@ import { CircleText, CtaButtons, Embers, Eyebrow, GhostButton, KnotMandala, Line
 import { SERVICES, WHY, waLink } from "@/components/site/content";
 import { DEMOS } from "@/components/site/demos";
 import { siteHead } from "@/components/site/meta";
+import { SERVICE_IMG } from "@/components/site/images";
 
 export const Route = createFileRoute("/site/")({
   head: () => siteHead("Premium Digital Invitations from Nepal", "SainoX crafts animated, personal digital invitations for weddings, bratabandha, anniversaries and every Nepali celebration."),
   component: Home,
 });
 
-export const SERVICE_IMG: Record<string, string> = { wedding, engagement: bride, anniversary: celebration, bratabandha: ritual, birthday: celebration, special: ritual };
 
 const OCCASIONS = ["Wedding", "विवाह", "Engagement", "सगाई", "Bratabandha", "व्रतबन्ध", "Anniversary", "वार्षिकोत्सव", "Pasni", "पास्नी", "Birthday", "जन्मदिन"];
 
