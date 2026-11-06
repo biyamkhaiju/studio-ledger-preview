@@ -295,3 +295,102 @@
 @utility page-glow {
   background: radial-gradient(ellipse at top, color-mix(in oklab, var(--brand-ember) 22%, transparent) 0%, transparent 60%);
 }
+
+/* ---------- SainoX luxury editorial layer ---------- */
+@keyframes curtain-up { 0%, 55% { transform: translateY(0); } 100% { transform: translateY(-100%); } }
+@keyframes preload-logo { 0% { opacity: 0; filter: blur(16px); transform: scale(.92); } 35%, 70% { opacity: 1; filter: blur(0); transform: none; } 100% { opacity: 0; transform: translateY(-30px); } }
+@keyframes preload-line { 0% { transform: scaleX(0); } 60% { transform: scaleX(1); } 100% { transform: scaleX(1); opacity: 0; } }
+@keyframes rise-line { from { transform: translateY(110%) rotate(2deg); } to { transform: none; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes grain-shift { 0%,100% { transform: translate(0,0); } 25% { transform: translate(-3%,2%); } 50% { transform: translate(2%,-3%); } 75% { transform: translate(-2%,-1%); } }
+@keyframes marquee-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes arch-draw { from { stroke-dashoffset: 1600; } to { stroke-dashoffset: 0; } }
+
+@utility animate-curtain { animation: curtain-up 2.4s cubic-bezier(.76,0,.24,1) forwards; }
+@utility animate-preload-logo { animation: preload-logo 2.1s cubic-bezier(.2,.8,.2,1) forwards; }
+@utility animate-preload-line { animation: preload-line 2s cubic-bezier(.76,0,.24,1) .2s both; transform-origin: left; }
+@utility animate-fade-in { animation: fade-in 1.4s ease both; animation-delay: var(--d, 0s); }
+@utility animate-marquee-rev { animation: marquee-rev 48s linear infinite; }
+@utility animate-arch-draw { stroke-dasharray: 1600; animation: arch-draw 3s cubic-bezier(.2,.8,.2,1) .6s both; }
+
+/* Masked line reveal: wrap each line in .line-mask > span */
+@utility line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: .08em;
+  & > span { display: block; transform: translateY(110%); }
+  [data-shown="true"] & > span, &[data-shown="true"] > span { animation: rise-line 1.2s cubic-bezier(.2,.8,.2,1) both; animation-delay: var(--d, 0s); }
+}
+
+@utility grain {
+  position: relative;
+  &::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    z-index: 60;
+    pointer-events: none;
+    opacity: .07;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain-shift 1.2s steps(4) infinite;
+  }
+}
+
+@utility arch { border-radius: 9999px 9999px 0 0; }
+
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in oklab, var(--brand-cream) 22%, transparent);
+}
+
+@utility text-ember-gold {
+  background: linear-gradient(100deg, var(--brand-ember) 0%, var(--brand-flame) 45%, var(--brand-gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility link-line {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -4px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .6s cubic-bezier(.76,0,.24,1);
+  }
+  &:hover::after, &[data-status="active"]::after { transform: scaleX(1); transform-origin: left; }
+}
+
+@utility hairline-x { background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--brand-cream) 18%, transparent), transparent); height: 1px; }
+
+@utility lux-glow {
+  background:
+    radial-gradient(ellipse 50% 40% at 70% 40%, color-mix(in oklab, var(--brand-ember) 28%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 15% 80%, color-mix(in oklab, var(--brand-flame) 10%, transparent), transparent 70%);
+}
+
+@utility img-zoom {
+  overflow: hidden;
+  & img { transition: transform 1.6s cubic-bezier(.2,.8,.2,1), filter 1s; }
+  &:hover img { transform: scale(1.07); }
+}
+
+@utility field-line {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid color-mix(in oklab, var(--brand-cream) 20%, transparent);
+  padding: .9rem 0;
+  color: var(--brand-cream);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color .4s;
+  &::placeholder { color: color-mix(in oklab, var(--brand-cream) 38%, transparent); }
+  &:focus { border-color: var(--brand-ember); }
+}
+
+@media (pointer: coarse) { .lux-cursor { display: none !important; } }
