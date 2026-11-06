@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logo from "@/assets/sainox-logo.png.asset.json";
+import card from "@/assets/sainox-card.png.asset.json";
 import { CtaButtons, SectionTitle } from "@/components/site/SiteChrome";
 import { siteHead } from "@/components/site/meta";
 
@@ -14,7 +14,7 @@ function About() {
       <div className="mx-auto max-w-5xl px-5">
         <SectionTitle eyebrow="About us" title="Our story" />
         <div className="mt-12 grid items-center gap-10 md:grid-cols-2">
-          <img src={logo.url} alt="SainoX logo" className="mx-auto w-72" />
+          <img src={card.url} alt="SainoX business card" className="w-full rounded-2xl border border-brand-line shadow-brand" loading="lazy" />
           <div className="space-y-4 text-brand-cream/75">
             <p>SainoX was born in Katunje, Bhaktapur — surrounded by temples, mountains and centuries of celebration. We believe the way you invite someone says as much as the event itself.</p>
             <p>Our studio turns invitations into experiences: personal, animated and easy to share, while staying true to the culture and traditions of every family we work with.</p>
