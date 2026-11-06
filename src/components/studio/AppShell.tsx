@@ -65,7 +65,8 @@ export function AppShell({ children }: { children: ReactNode }) {
   useEffect(() => setMobileOpen(false), [path]);
   // Signed-out visitors opening "/" see the public website; staff sign in from its footer ("Studio login").
   const goTo = useNavigate();
-  useEffect(() => { if (ready && !session && pathname === "/") void goTo({ to: "/site", replace: true }); }, [ready, session, pathname, goTo]);
+  // Opening the preview at "/" always shows the website first (even signed in); later in-app visits to "/" show the dashboard.
+  useEffect(() => { if (!openedSite && pathname === "/") { openedSite = true; void goTo({ to: "/site", replace: true }); } else openedSite = true; }, [pathname, goTo]);
   // Guest invitation pages are public cards, shown without the dashboard frame.
   if (pathname.startsWith("/invite/") || pathname === "/site" || pathname.startsWith("/site/")) return <>{children}</>;
 
