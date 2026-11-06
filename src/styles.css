@@ -184,6 +184,90 @@
 @keyframes brand-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @utility animate-brand-rise { animation: brand-rise .7s cubic-bezier(.2,.8,.2,1) both; }
 
+/* ---------- SainoX website motion system ---------- */
+@keyframes ken-burns { 0% { transform: scale(1.08) translate3d(0,0,0); } 100% { transform: scale(1.22) translate3d(-2%,-3%,0); } }
+@keyframes ember-float { 0% { transform: translate3d(0,0,0) scale(1); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate3d(var(--drift, 20px), -110vh, 0) scale(.4); opacity: 0; } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes glow-pulse { 0%,100% { opacity: .45; transform: scale(1); } 50% { opacity: .9; transform: scale(1.08); } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes gradient-pan { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+@keyframes logo-reveal { 0% { opacity: 0; transform: scale(.85); filter: blur(14px); } 100% { opacity: 1; transform: none; filter: drop-shadow(0 0 28px color-mix(in oklab, var(--brand-ember) 55%, transparent)); } }
+@keyframes sheen { 0%, 60% { transform: translateX(-120%) skewX(-20deg); } 100% { transform: translateX(220%) skewX(-20deg); } }
+@keyframes line-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes scroll-dot { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(14px); opacity: 0; } }
+@keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+@utility animate-ken-burns { animation: ken-burns 24s ease-in-out infinite alternate; }
+@utility animate-ember { animation: ember-float var(--dur, 9s) linear var(--delay, 0s) infinite; }
+@utility animate-spin-slow { animation: spin-slow 60s linear infinite; }
+@utility animate-spin-slower { animation: spin-slow 120s linear infinite reverse; }
+@utility animate-glow { animation: glow-pulse 5s ease-in-out infinite; }
+@utility animate-marquee { animation: marquee 40s linear infinite; }
+@utility animate-logo-reveal { animation: logo-reveal 1.6s cubic-bezier(.2,.8,.2,1) both; }
+@utility animate-line-grow { animation: line-grow 1.8s cubic-bezier(.2,.8,.2,1) both; transform-origin: top; }
+@utility animate-scroll-dot { animation: scroll-dot 1.6s ease-in infinite; }
+@utility animate-float { animation: float-y 6s ease-in-out infinite; }
+
+@utility text-brand-shimmer {
+  background: linear-gradient(90deg, var(--brand-ember), var(--brand-flame), var(--brand-cream), var(--brand-flame), var(--brand-ember));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 6s linear infinite;
+}
+
+@utility sheen {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 40%;
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--brand-cream) 35%, transparent), transparent);
+    animation: sheen 4.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+/* Woven strip from the business card edge */
+@utility brand-weave {
+  background-image:
+    repeating-linear-gradient(45deg, color-mix(in oklab, var(--brand-cream) 9%, transparent) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(-45deg, color-mix(in oklab, var(--brand-cream) 9%, transparent) 0 1px, transparent 1px 9px);
+}
+
+@utility hero-vignette {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 42%, color-mix(in oklab, var(--brand-ink) 55%, transparent), transparent 70%),
+    linear-gradient(180deg, color-mix(in oklab, var(--brand-ink) 70%, transparent) 0%, transparent 30%, transparent 60%, var(--brand-ink) 100%);
+}
+
+@utility ember-dot {
+  background: radial-gradient(circle, var(--brand-flame), color-mix(in oklab, var(--brand-ember) 60%, transparent) 45%, transparent 70%);
+  border-radius: 9999px;
+}
+
+@utility card-glow {
+  position: relative;
+  transition: transform .5s cubic-bezier(.2,.8,.2,1), border-color .4s, box-shadow .5s;
+  &:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in oklab, var(--brand-ember) 70%, transparent);
+    box-shadow: 0 24px 60px -24px color-mix(in oklab, var(--brand-ember) 70%, transparent);
+  }
+}
+
+/* Scroll reveal: elements start hidden and rise in when [data-shown] is set */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1);
+  transition-delay: var(--reveal-delay, 0ms);
+  &[data-shown="true"] { opacity: 1; transform: none; }
+}
+
 @utility font-display {
   font-family: var(--font-brand);
   letter-spacing: 0.01em;
