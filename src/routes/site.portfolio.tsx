@@ -16,11 +16,15 @@ function Portfolio() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {DEMOS.map((d) => (
             <article key={d.slug} className="overflow-hidden rounded-2xl border border-brand-line bg-brand-ink-raised">
-              <div className="flex aspect-[3/4] flex-col items-center justify-center gap-2 border-b border-brand-line bg-brand-ink p-5 text-center">
-                <p className="text-xs uppercase tracking-[0.25em] text-brand-ember">{d.category}</p>
-                <p className="font-brand text-2xl">{d.hosts}</p>
+              <div className="relative flex aspect-[3/4] flex-col items-center justify-center gap-2 border-b border-brand-line bg-brand-ink p-5 text-center">
+                <span className="pointer-events-none absolute inset-3 rounded-xl border border-brand-ember/30" aria-hidden />
+                <span className="pointer-events-none absolute inset-y-3 left-6 w-px bg-brand-ember/70" aria-hidden />
+                <p className="font-brand text-3xl text-brand-ember">{d.nepali}</p>
+                <p className="text-xs uppercase tracking-[0.25em] text-brand-cream/60">{d.category}</p>
+                <p className="mt-2 font-brand text-2xl">{d.hosts}</p>
                 <span className="brand-divider h-px w-20" />
                 <p className="text-xs text-brand-cream/60">{d.date}</p>
+                <p className="text-xs text-brand-cream/50">{d.venue}</p>
               </div>
               <div className="p-4">
                 <h3 className="font-brand text-lg">{d.title}</h3>
