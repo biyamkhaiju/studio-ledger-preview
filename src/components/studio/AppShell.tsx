@@ -52,6 +52,8 @@ const NAV: Group[] = [
 
 export const useQuickCreate = () => useContext(QuickCreateContext);
 
+let openedSite = false;
+
 export function AppShell({ children }: { children: ReactNode }) {
   const { session,ready }=useAuth();
   const {loading,error,saving,reload}=useStore();
