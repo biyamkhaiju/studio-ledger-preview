@@ -192,7 +192,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen overflow-x-hidden bg-brand-ink font-sans text-brand-cream">
       <Header />
       <main key={pathname} className={cn("animate-brand-rise", !isHome && "relative pt-16")}>
-        {!isHome && <div className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-[radial-gradient(ellipse_at_top,var(--brand-ember)_0%,transparent_60%)] opacity-15" aria-hidden />}
+        {!isHome && <div className="pointer-events-none absolute inset-x-0 top-0 h-96 page-glow" aria-hidden />}
         {children}
       </main>
       <Footer />
