@@ -10,7 +10,7 @@ describe("Ledger integrity",()=>{
   expect(mergeBackup(current,incoming).clients[0]?.name).toBe("Original");
  });
  it("rejects missing project clients",()=>{
-  const data=emptyLedger();data.projects=[{id:"project",name:"Project",division:"website",clientId:"missing",status:"planning",budget:0,startDate:"2026-11-03",deadline:"",description:"",milestones:[],manualProgress:0}];
+  const data=emptyLedger();data.projects=[{id:"project",name:"Project",division:"website",clientId:"missing",status:"planning",budget:0,startDate:"2026-11-03",deadline:"",description:"",milestones:[],manualProgress:0} as any];
   expect(()=>validateBackup(data)).toThrow("missing related records");
  });
  it("unavailable workers cannot receive assignments",()=>expect(canAssign("unavailable")).toBe(false));
@@ -32,13 +32,13 @@ describe("Ledger integrity",()=>{
 });
 describe("Project deadlines",()=>{
  it("stores a cleared project deadline as empty (null), not as an invalid date",()=>{
-  const after=emptyLedger();after.projects=[{id:"p1",name:"Site",division:"website",clientId:"",status:"planning",budget:0,startDate:"2026-11-03",deadline:"",description:"",milestones:[],manualProgress:0}];
+  const after=emptyLedger();after.projects=[{id:"p1",name:"Site",division:"website",clientId:"",status:"planning",budget:0,startDate:"2026-11-03",deadline:"",description:"",milestones:[],manualProgress:0} as any];
   const change=ledgerChanges(emptyLedger(),after)[0] as {row:Record<string,unknown>};
   expect(change.row["deadline"]).toBeNull();
   expect(change.row["client_id"]).toBeNull();
  });
  it("keeps a real project deadline",()=>{
-  const after=emptyLedger();after.projects=[{id:"p1",name:"Site",division:"website",clientId:"",status:"planning",budget:0,startDate:"2026-11-03",deadline:"2026-12-01",description:"",milestones:[],manualProgress:0}];
+  const after=emptyLedger();after.projects=[{id:"p1",name:"Site",division:"website",clientId:"",status:"planning",budget:0,startDate:"2026-11-03",deadline:"2026-12-01",description:"",milestones:[],manualProgress:0} as any];
   const change=ledgerChanges(emptyLedger(),after)[0] as {row:Record<string,unknown>};
   expect(change.row["deadline"]).toBe("2026-12-01");
  });
