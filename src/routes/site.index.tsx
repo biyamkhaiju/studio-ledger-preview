@@ -32,7 +32,7 @@ function Home() {
         <div className="brand-weave absolute inset-y-0 left-0 hidden w-10 border-r border-brand-ember/70 md:block" aria-hidden />
         <span className="animate-line-grow absolute inset-y-0 left-14 hidden w-px bg-brand-ember/70 md:block" aria-hidden />
 
-        <div className="relative z-10 flex flex-col items-center px-5 pb-16 pt-28 text-center">
+        <div className="relative z-10 flex flex-col items-center px-5 pb-20 pt-28 text-center">
           <div className="relative flex items-center justify-center">
             <KnotMandala className="absolute h-[26rem] w-[26rem] opacity-70 md:h-[40rem] md:w-[40rem]" />
             <span className="ember-dot animate-glow absolute h-56 w-56 opacity-40 blur-3xl md:h-80 md:w-80" aria-hidden />
@@ -48,7 +48,7 @@ function Home() {
           <div className="animate-brand-rise mt-9 [animation-delay:1500ms]"><CtaButtons center /></div>
         </div>
 
-        <a href="#occasions" aria-label="Scroll down" className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-brand-cream/50 hover:text-brand-ember">
+        <a href="#occasions" aria-label="Scroll down" className="absolute bottom-4 left-1/2 z-10 hidden -translate-x-1/2 [@media(min-height:860px)]:flex flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-brand-cream/50 hover:text-brand-ember">
           <span className="flex h-9 w-5 justify-center rounded-full border border-brand-cream/40 pt-1.5"><span className="animate-scroll-dot h-1.5 w-1 rounded-full bg-brand-ember" /></span>
           <ChevronDown className="h-4 w-4" />
         </a>
