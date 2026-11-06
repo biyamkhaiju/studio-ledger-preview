@@ -16,7 +16,7 @@ function Services() {
         <SectionTitle eyebrow="Services" title="Invitation categories" sub="Every design is made to order around your family, your traditions and your guests." />
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {SERVICES.map((s) => (
-            <article key={s.slug} className="rounded-2xl border border-brand-line bg-brand-ink-raised p-7">
+            <article key={s.slug} className="card-glow rounded-2xl border border-brand-line bg-brand-ink-raised p-7">
               <p className="text-sm text-brand-ember">{s.nepali}</p>
               <h3 className="mt-1 font-brand text-3xl">{s.title}</h3>
               <p className="mt-3 text-brand-cream/70">{s.blurb}</p>

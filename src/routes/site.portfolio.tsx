@@ -15,7 +15,7 @@ function Portfolio() {
         <SectionTitle eyebrow="Portfolio" title="Invitation previews" sub="Open a demo to experience an invitation just as your guests would." />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {DEMOS.map((d) => (
-            <article key={d.slug} className="overflow-hidden rounded-2xl border border-brand-line bg-brand-ink-raised">
+            <article key={d.slug} className="card-glow overflow-hidden rounded-2xl border border-brand-line bg-brand-ink-raised">
               <div className="relative flex aspect-[3/4] flex-col items-center justify-center gap-2 border-b border-brand-line bg-brand-ink p-5 text-center">
                 <span className="pointer-events-none absolute inset-3 rounded-xl border border-brand-ember/30" aria-hidden />
                 <span className="pointer-events-none absolute inset-y-3 left-6 w-px bg-brand-ember/70" aria-hidden />

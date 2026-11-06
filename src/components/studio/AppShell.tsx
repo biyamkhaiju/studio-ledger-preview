@@ -63,6 +63,9 @@ export function AppShell({ children }: { children: ReactNode }) {
   // Pages anyone can open without signing in.
   const isPublic = pathname === "/team" || pathname === "/reset-password";
   useEffect(() => setMobileOpen(false), [path]);
+  // Signed-out visitors opening "/" see the public website; staff sign in from its footer ("Studio login").
+  const goTo = useNavigate();
+  useEffect(() => { if (ready && !session && pathname === "/") void goTo({ to: "/site", replace: true }); }, [ready, session, pathname, goTo]);
   // Guest invitation pages are public cards, shown without the dashboard frame.
   if (pathname.startsWith("/invite/") || pathname === "/site" || pathname.startsWith("/site/")) return <>{children}</>;
 

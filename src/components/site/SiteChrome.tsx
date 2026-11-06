@@ -1,5 +1,5 @@
-import { useState, type ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, MessageCircle, Send, Phone, Mail, MapPin } from "lucide-react";
 import logo from "@/assets/sainox-logo.png.asset.json";
 import { CONTACT, FAQ, NAV, waLink } from "./content";
@@ -15,14 +15,63 @@ export function Divider({ className }: { className?: string }) {
   );
 }
 
+
+/** Fades and lifts its content in when scrolled into view. */
+export function Reveal({ children, delay = 0, className, as: Tag = "div" }: { children: ReactNode; delay?: number; className?: string; as?: "div" | "article" | "li" }) {
+  const ref = useRef<HTMLElement | null>(null);
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { setShown(true); io.disconnect(); } }, { threshold: 0.12 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return <Tag ref={ref as never} data-shown={shown} className={cn("reveal", className)} style={{ "--reveal-delay": `${delay}ms` } as CSSProperties}>{children}</Tag>;
+}
+
+/** Glowing embers drifting upward, like the flame in the logo. */
+export function Embers({ count = 22 }: { count?: number }) {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      {Array.from({ length: count }, (_, i) => {
+        const size = 3 + ((i * 7) % 6);
+        const style = { left: `${(i * 37) % 100}%`, bottom: `-${10 + ((i * 13) % 20)}px`, width: size, height: size, "--dur": `${8 + ((i * 5) % 9)}s`, "--delay": `${-((i * 1.7) % 12)}s`, "--drift": `${((i % 5) - 2) * 30}px` } as CSSProperties;
+        return <span key={i} className="ember-dot animate-ember absolute" style={style} />;
+      })}
+    </div>
+  );
+}
+
+/** Endless-knot inspired mandala rings from the logo's underline ornament. */
+export function KnotMandala({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 400 400" className={className} aria-hidden fill="none">
+      <g className="origin-center animate-spin-slow" style={{ transformBox: "fill-box" }}>
+        <circle cx="200" cy="200" r="190" stroke="var(--brand-ember)" strokeOpacity=".35" strokeDasharray="2 10" />
+        <circle cx="200" cy="200" r="160" stroke="var(--brand-flame)" strokeOpacity=".25" />
+        {Array.from({ length: 16 }, (_, i) => (
+          <rect key={i} x="194" y="22" width="12" height="12" transform={`rotate(${i * 22.5} 200 200) rotate(45 200 28)`} stroke="var(--brand-ember)" strokeOpacity=".55" />
+        ))}
+      </g>
+      <g className="origin-center animate-spin-slower" style={{ transformBox: "fill-box" }}>
+        <circle cx="200" cy="200" r="130" stroke="var(--brand-cream)" strokeOpacity=".12" strokeDasharray="30 8" />
+        {Array.from({ length: 8 }, (_, i) => (
+          <path key={i} d="M200 75 L210 90 L200 105 L190 90 Z" transform={`rotate(${i * 45} 200 200)`} stroke="var(--brand-flame)" strokeOpacity=".5" />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
 export function SectionTitle({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) {
   return (
-    <div className="mx-auto max-w-2xl text-center">
+    <Reveal className="mx-auto max-w-2xl text-center">
       <p className="text-xs uppercase tracking-[0.3em] text-brand-ember">{eyebrow}</p>
       <h2 className="mt-3 font-brand text-3xl text-brand-cream md:text-5xl">{title}</h2>
       <Divider className="mt-5" />
       {sub && <p className="mt-5 text-brand-cream/70">{sub}</p>}
-    </div>
+    </Reveal>
   );
 }
 
@@ -39,11 +88,13 @@ export function CtaButtons({ center }: { center?: boolean }) {
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => { const on = () => setScrolled(window.scrollY > 40); on(); window.addEventListener("scroll", on, { passive: true }); return () => window.removeEventListener("scroll", on); }, []);
   return (
-    <header className="sticky top-0 z-40 border-b border-brand-line bg-brand-ink/90 backdrop-blur">
+    <header className={cn("fixed inset-x-0 top-0 z-40 border-b transition-all duration-500", scrolled || open ? "border-brand-line bg-brand-ink/85 backdrop-blur-xl" : "border-transparent bg-transparent")}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
         <Link to="/site" className="flex items-center gap-2" aria-label="SainoX home">
-          <img src={logo.url} alt="SainoX" className="h-10 w-auto" />
+          <img src={logo.url} alt="SainoX" className="h-11 w-auto transition-transform duration-500 hover:scale-105" />
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {NAV.map((n) => (
@@ -65,7 +116,8 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="border-t border-brand-line bg-brand-ink">
+    <footer className="relative overflow-hidden border-t border-brand-line bg-brand-ink">
+      <div className="brand-weave absolute inset-y-0 left-0 w-8 border-r border-brand-ember/60" aria-hidden />
       <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 md:grid-cols-3">
         <div>
           <img src={logo.url} alt="SainoX" className="h-14 w-auto" />
@@ -81,7 +133,10 @@ function Footer() {
           <p className="flex items-center gap-2"><MapPin className="h-4 w-4" />{CONTACT.location}</p>
         </div>
       </div>
-      <p className="border-t border-brand-line py-4 text-center text-xs text-brand-cream/40">© {new Date().getFullYear()} SainoX. All rights reserved.</p>
+      <div className="flex flex-wrap items-center justify-center gap-4 border-t border-brand-line py-4 text-xs text-brand-cream/40">
+        <span>© {new Date().getFullYear()} SainoX. All rights reserved.</span>
+        <Link to="/projects" className="hover:text-brand-ember">Studio login</Link>
+      </div>
     </footer>
   );
 }
@@ -131,10 +186,15 @@ function ChatBot() {
 }
 
 export function SiteShell({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isHome = pathname === "/site" || pathname === "/site/";
   return (
-    <div className="min-h-screen bg-brand-ink font-sans text-brand-cream">
+    <div className="min-h-screen overflow-x-hidden bg-brand-ink font-sans text-brand-cream">
       <Header />
-      <main>{children}</main>
+      <main key={pathname} className={cn("animate-brand-rise", !isHome && "relative pt-16")}>
+        {!isHome && <div className="pointer-events-none absolute inset-x-0 top-0 h-96 page-glow" aria-hidden />}
+        {children}
+      </main>
       <Footer />
       <ChatBot />
     </div>
