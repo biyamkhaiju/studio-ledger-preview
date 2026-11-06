@@ -21,7 +21,7 @@ function Services() {
             <article key={s.slug} className={cn("grid items-center gap-10 md:grid-cols-2 md:gap-20", i % 2 && "md:[&>*:first-child]:order-2")}>
               <Reveal>
                 <div className="relative">
-                  <ParallaxImg src={SERVICE_IMG[s.slug]} alt={`${s.title} invitation mood`} className="arch aspect-[4/5] w-full" />
+                  <ParallaxImg src={SERVICE_IMG[s.slug] ?? IMG.wedding} alt={`${s.title} invitation mood`} className="arch aspect-[4/5] w-full" />
                   <span className="arch pointer-events-none absolute -inset-3 border border-brand-gold/25" aria-hidden />
                   <span className="absolute -bottom-6 left-6 font-lux text-8xl font-light leading-none text-outline md:text-9xl">0{i + 1}</span>
                 </div>
