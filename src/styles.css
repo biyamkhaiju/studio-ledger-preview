@@ -7,6 +7,9 @@
 @theme inline {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-brand: "Marcellus", "Cormorant Garamond", Georgia, serif;
+  --font-lux: "Cormorant Garamond", "Tiro Devanagari Hindi", Georgia, serif;
+  --font-lux-sans: "Jost", "Tiro Devanagari Hindi", ui-sans-serif, sans-serif;
+  --color-brand-gold: var(--brand-gold);
   --color-brand-ink: var(--brand-ink);
   --color-brand-ink-raised: var(--brand-ink-raised);
   --color-brand-line: var(--brand-line);
@@ -161,6 +164,7 @@
   --brand-cream: oklch(0.93 0.02 85);
   --brand-ember: oklch(0.52 0.19 28);
   --brand-flame: oklch(0.66 0.18 45);
+  --brand-gold: oklch(0.8 0.1 78);
   --brand-shadow: 0 12px 32px -12px color-mix(in oklab, var(--brand-ember) 55%, transparent);
 }
 
