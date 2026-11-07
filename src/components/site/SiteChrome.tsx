@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { X, MessageCircle, Send, Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
-import logo from "@/assets/sainox-logo.png.asset.json";
+import logoUrl from "@/assets/sainox-logo.webp";
 import { CONTACT, FAQ, NAV, waLink } from "./content";
 import { cn } from "@/lib/utils";
 
@@ -202,7 +202,7 @@ function Preloader() {
   if (gone) return null;
   return (
     <div className="animate-curtain fixed inset-0 z-[80] flex flex-col items-center justify-center bg-brand-ink" aria-hidden>
-      <img src={logo.url} alt="" className="animate-preload-logo h-24 w-auto md:h-32" />
+      <img src={logoUrl} alt="" className="animate-preload-logo h-24 w-auto md:h-32" />
       <span className="animate-preload-line mt-8 h-px w-48 bg-brand-ember" />
     </div>
   );
@@ -247,7 +247,7 @@ function Header() {
       <header className={cn("fixed inset-x-0 top-0 z-[55] transition-all duration-700", scrolled && !open ? "bg-brand-ink/70 py-2 backdrop-blur-xl" : "bg-transparent py-4")}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-10">
           <Link to="/site" className="relative z-10" aria-label="SainoX home">
-            <img src={logo.url} alt="SainoX" className={cn("w-auto transition-all duration-700", scrolled ? "h-10" : "h-12")} />
+            <img src={logoUrl} alt="SainoX" className={cn("w-auto transition-all duration-700", scrolled ? "h-10" : "h-12")} />
           </Link>
           <nav className="hidden items-center gap-8 lg:flex">
             {NAV.slice(1).map((n) => (

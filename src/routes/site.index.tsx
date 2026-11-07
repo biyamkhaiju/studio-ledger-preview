@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ArrowUpRight } from "lucide-react";
-import logo from "@/assets/sainox-logo.png.asset.json";
+import logoUrl from "@/assets/sainox-logo.webp";
 import bride from "@/assets/site-hero-bride.jpg";
 import wedding from "@/assets/site-wedding.jpg";
 import ritual from "@/assets/site-ritual.jpg";
@@ -291,7 +291,7 @@ function FinalCta() {
       <div className="absolute inset-0 bg-gradient-to-b from-brand-ink via-brand-ink/50 to-brand-ink" aria-hidden />
       <Embers count={14} />
       <div className="relative mx-auto max-w-5xl px-6 py-28 text-center">
-        <Reveal><img src={logo.url} alt="SainoX" className="mx-auto h-20 w-auto animate-float md:h-28" loading="lazy" /></Reveal>
+        <Reveal><img src={logoUrl} alt="SainoX" className="mx-auto h-20 w-auto animate-float md:h-28" loading="lazy" /></Reveal>
         <Lines lines={["Your celebration deserves", <em key="e" className="text-ember-gold">a beautiful beginning.</em>]} className="mt-10 font-lux text-5xl font-light leading-[1.02] md:text-8xl" />
         <Reveal delay={300}>
           <div className="mt-12 flex flex-wrap justify-center gap-4">

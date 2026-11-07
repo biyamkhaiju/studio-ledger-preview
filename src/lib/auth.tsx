@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import type { Tables } from "@/integrations/supabase/types";
-import logo from "@/assets/sainox-logo.png.asset.json";
+import logoUrl from "@/assets/sainox-logo.webp";
 export function AuthProvider({children}:{children:ReactNode}) {
  const [session,setSession]=useState<Session|null>(null),[ready,setReady]=useState(false),[profile,setProfile]=useState<Tables<"profiles">|null>(null),[avatar,setAvatar]=useState("");
  async function refresh(){const {data:{user}}=await supabase.auth.getUser(); if(!user){setProfile(null);setAvatar("");return;} const {data,error}=await supabase.from("profiles").select("*").eq("id",user.id).maybeSingle(); if(error)throw error; setProfile(data); if(data?.avatar_path){const result=await supabase.storage.from("avatars").createSignedUrl(data.avatar_path,3600);setAvatar(result.data?.signedUrl??"");}else setAvatar("");}
@@ -43,7 +43,7 @@ export function SignInPanel(){
   <div className="mx-auto flex min-h-full w-full max-w-md flex-col justify-center px-6 py-10">
    <h1 className="sr-only">SainoX Dashboard</h1>
    <div className="animate-brand-rise overflow-hidden">
-    <img src={logo.url} alt="sainoX" className="mask-soft-edges mx-auto aspect-[12/5] w-full max-w-sm object-cover object-[center_52%]"/>
+    <img src={logoUrl} alt="sainoX" className="mask-soft-edges mx-auto aspect-[12/5] w-full max-w-sm object-cover object-[center_52%]"/>
    </div>
    <p className="mt-1 text-center text-[11px] uppercase tracking-[0.35em] text-brand-cream/60 animate-brand-rise">Dashboard · Create with purpose</p>
    <div className="mt-8 rounded-2xl border border-brand-line bg-brand-ink-raised/60 p-6 shadow-brand animate-brand-rise sm:p-8" style={{animationDelay:"120ms"}}>
