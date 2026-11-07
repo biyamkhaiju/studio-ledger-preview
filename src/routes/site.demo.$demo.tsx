@@ -44,7 +44,10 @@ function DemoPage() {
               <span className="arch pointer-events-none absolute inset-3 border border-brand-ember/30" aria-hidden />
               <p className="font-lux-sans text-[10px] uppercase tracking-[0.4em] text-brand-cream/50">An invitation for</p>
               <p className="mt-4 font-lux text-4xl font-light">Guest Name</p>
-              <span className="my-8 flex h-20 w-20 items-center justify-center rounded-full bg-brand-ember font-lux text-3xl text-brand-cream shadow-brand transition-transform duration-700 group-hover:scale-110 animate-glow-pulse">X</span>
+              <span className="relative my-8 flex h-20 w-20 items-center justify-center">
+                <span className="animate-glow absolute -inset-4 rounded-full bg-brand-ember/40 blur-xl" aria-hidden />
+                <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-brand-ember font-lux text-3xl text-brand-cream shadow-brand transition-transform duration-700 group-hover:scale-110">X</span>
+              </span>
               <p className="font-lux-sans text-[11px] uppercase tracking-[0.35em] text-brand-gold">Tap to open</p>
             </div>
           </button>
