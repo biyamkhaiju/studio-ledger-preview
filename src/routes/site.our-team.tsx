@@ -46,9 +46,9 @@ function Team() {
               </p>
             </Reveal>
             <Reveal delay={250}>
-              <div className="mt-10 grid gap-px overflow-hidden rounded-sm border border-brand-line bg-brand-line font-lux-sans text-sm sm:grid-cols-3">
+              <div className="mt-10 grid gap-px overflow-hidden rounded-sm border border-brand-line bg-brand-line font-lux-sans text-sm sm:grid-cols-2">
                 <a href={`tel:+977${CONTACT.phone}`} className="flex items-center gap-3 bg-brand-ink p-5 transition-colors hover:text-brand-gold"><Phone className="h-4 w-4 text-brand-ember" />{CONTACT.phoneIntl}</a>
-                <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-3 break-all bg-brand-ink p-5 transition-colors hover:text-brand-gold"><Mail className="h-4 w-4 shrink-0 text-brand-ember" />{CONTACT.email}</a>
+                <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-3 bg-brand-ink p-5 sm:col-span-2 sm:order-last transition-colors hover:text-brand-gold"><Mail className="h-4 w-4 shrink-0 text-brand-ember" />{CONTACT.email}</a>
                 <p className="flex items-center gap-3 bg-brand-ink p-5"><MapPin className="h-4 w-4 shrink-0 text-brand-ember" />{CONTACT.location}</p>
               </div>
             </Reveal>

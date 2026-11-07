@@ -69,7 +69,7 @@ function DemoPage() {
             <div className="mt-10 flex flex-col items-center gap-6">
               <PrimaryButton>Order one like this</PrimaryButton>
               <div className="flex gap-6 font-lux-sans text-[11px] uppercase tracking-[0.3em] text-brand-cream/60">
-                <button onClick={() => setOpen(false)} className="hover:text-brand-gold">Replay</button>
+                <button onClick={() => setOpen(false)} className="uppercase tracking-[0.3em] hover:text-brand-gold">Replay</button>
                 <Link to="/site/portfolio" className="hover:text-brand-gold">← Portfolio</Link>
               </div>
             </div>
