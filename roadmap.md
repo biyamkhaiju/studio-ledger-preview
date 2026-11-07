@@ -6,6 +6,7 @@
 - [x] Fix saving a project with an empty deadline.
 - [x] Fix "useStore outside provider" error on /projects (keep one provider, stable across live reloads).
 - [x] Re-theme the whole dashboard to the logo palette (ink black, cream, ember red) like the sign-in page.
+- [x] Redesign the public SainoX website (all pages incl. Team, Contact, demo invitations).
 - [ ] Import existing records and users from the old database — waiting on the user's exports.
 - [ ] Profile: reliable name + photo update (large phone photos resized before upload).
 - [ ] Rename Wedding Projects → Invitation Projects with categories: Wedding, Anniversary, Baby Born, Bartabandha (own section each).
