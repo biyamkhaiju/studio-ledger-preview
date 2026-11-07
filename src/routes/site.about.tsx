@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import card from "@/assets/sainox-card.png.asset.json";
+import cardUrl from "@/assets/sainox-card.webp";
 import { CtaButtons, Eyebrow, KnotMandala, Lines, PageHero, Reveal } from "@/components/site/SiteChrome";
 import { IMG } from "@/components/site/images";
 import { siteHead } from "@/components/site/meta";
@@ -24,7 +24,7 @@ function About() {
           <Reveal>
             <div className="relative [perspective:1400px]">
               <KnotMandala className="pointer-events-none absolute -left-20 -top-20 h-[28rem] w-[28rem] opacity-40" />
-              <img src={card.url} alt="SainoX business card" loading="lazy" className="relative w-full rounded-sm shadow-[0_50px_120px_-40px_var(--brand-ember)] transition-transform duration-1000 hover:[transform:rotateY(-8deg)_rotateX(4deg)]" />
+              <img src={cardUrl} alt="SainoX business card" loading="lazy" className="relative w-full rounded-sm shadow-[0_50px_120px_-40px_var(--brand-ember)] transition-transform duration-1000 hover:[transform:rotateY(-8deg)_rotateX(4deg)]" />
             </div>
           </Reveal>
           <div className="space-y-6 font-lux-sans text-lg font-light leading-relaxed text-brand-cream/65">

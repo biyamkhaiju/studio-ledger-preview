@@ -12,7 +12,7 @@ import { useStore, isOverdue, daysUntil } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/lib/theme";
 import { useAuth, SignInPanel } from "@/lib/auth";
-import logo from "@/assets/sainox-logo.png.asset.json";
+import logoUrl from "@/assets/sainox-logo.webp";
 import { supabase } from "@/integrations/supabase/client";
 import { CATEGORY_INFO, INVITATION_CATEGORIES } from "@/lib/invitations";
 
@@ -106,7 +106,7 @@ function Sidebar({ onClose }: { onClose: () => void }) {
   return (
     <div className="flex h-full flex-col p-4">
       <div className="mb-6 flex items-center gap-3 px-2">
-        <img src={logo.url} alt="SainoX logo" className="h-12 w-16 shrink-0 rounded-md object-cover" />
+        <img src={logoUrl} alt="SainoX logo" className="h-12 w-16 shrink-0 rounded-md object-cover" />
         <div className="flex-1">
           <div className="font-display text-base">SainoX</div>
           <div className="text-[11px] text-muted-foreground">Dashboard · Create with purpose</div>

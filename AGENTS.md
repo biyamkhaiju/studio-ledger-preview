@@ -16,4 +16,5 @@
 - Import validated backups only after explicit confirmation and merge missing IDs without overwriting current records.
 - The first account created becomes admin via the `handle_new_user` trigger; roles live only in `user_roles` and are checked with `has_role`, never from client data.
 - Ledger tables store the owner as a plain `user_id` uuid (no FK to auth.users) so imported records can be remapped to new account IDs.
-- Use the brand asset pointer in `src/assets` for app branding and `public/favicon.png` for the favicon.
+- Bundle brand images as real files in `src/assets` (not Lovable asset pointers) so the app also works when hosted on Vercel; use `public/favicon.png` for the favicon.
+- Leave `vite.config.ts` without a forced nitro preset: Lovable forces Cloudflare in its sandbox and nitro auto-detects Vercel there.
