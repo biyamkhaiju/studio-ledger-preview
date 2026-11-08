@@ -16,22 +16,22 @@ export const CATEGORY_INFO: Record<InvitationCategory, {
 }> = {
   wedding: {
     label: "Wedding", path: "wedding", blurb: "Marriage ceremonies and receptions",
-    event: "Wedding Ceremony", greeting: "request the pleasure of your company at the wedding celebration",
+    event: "Wedding Ceremony", nepali: "शुभ विवाह", greeting: "request the pleasure of your company at the wedding celebration",
     milestones: ["Requirements gathered", "Design draft", "Couple review", "Revisions", "Guest list ready", "Invitations sent"],
   },
   anniversary: {
     label: "Anniversary", path: "anniversary", blurb: "Milestone anniversaries and renewals",
-    event: "Anniversary Celebration", greeting: "warmly invite you to celebrate their anniversary",
+    event: "Anniversary Celebration", nepali: "शुभ वार्षिकोत्सव", greeting: "warmly invite you to celebrate their anniversary",
     milestones: ["Requirements gathered", "Design draft", "Family review", "Revisions", "Guest list ready", "Invitations sent"],
   },
   baby_born: {
     label: "Baby Born", path: "baby-born", blurb: "Welcoming a newborn and naming ceremonies",
-    event: "Welcoming Our Little One", greeting: "joyfully invite you to bless and welcome their little one",
+    event: "Welcoming Our Little One", nepali: "शुभ स्वागतम्", greeting: "joyfully invite you to bless and welcome their little one",
     milestones: ["Requirements gathered", "Design draft", "Family review", "Revisions", "Guest list ready", "Invitations sent"],
   },
   bartabandha: {
     label: "Bartabandha", path: "bartabandha", blurb: "Sacred thread ceremonies",
-    event: "Bartabandha Ceremony", greeting: "cordially invite you to grace the sacred Bartabandha ceremony",
+    event: "Bartabandha Ceremony", nepali: "शुभ व्रतबन्ध", greeting: "cordially invite you to grace the sacred Bartabandha ceremony",
     milestones: ["Requirements gathered", "Design draft", "Family review", "Revisions", "Guest list ready", "Invitations sent"],
   },
 };
