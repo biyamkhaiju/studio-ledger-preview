@@ -10,27 +10,28 @@ export const CATEGORY_INFO: Record<InvitationCategory, {
   path: string;
   blurb: string;
   event: string;
+  nepali: string;
   greeting: string;
   milestones: string[];
 }> = {
   wedding: {
     label: "Wedding", path: "wedding", blurb: "Marriage ceremonies and receptions",
-    event: "Wedding Ceremony", greeting: "request the pleasure of your company at the wedding celebration",
+    event: "Wedding Ceremony", nepali: "शुभ विवाह", greeting: "request the pleasure of your company at the wedding celebration",
     milestones: ["Requirements gathered", "Design draft", "Couple review", "Revisions", "Guest list ready", "Invitations sent"],
   },
   anniversary: {
     label: "Anniversary", path: "anniversary", blurb: "Milestone anniversaries and renewals",
-    event: "Anniversary Celebration", greeting: "warmly invite you to celebrate their anniversary",
+    event: "Anniversary Celebration", nepali: "शुभ वार्षिकोत्सव", greeting: "warmly invite you to celebrate their anniversary",
     milestones: ["Requirements gathered", "Design draft", "Family review", "Revisions", "Guest list ready", "Invitations sent"],
   },
   baby_born: {
     label: "Baby Born", path: "baby-born", blurb: "Welcoming a newborn and naming ceremonies",
-    event: "Welcoming Our Little One", greeting: "joyfully invite you to bless and welcome their little one",
+    event: "Welcoming Our Little One", nepali: "शुभ स्वागतम्", greeting: "joyfully invite you to bless and welcome their little one",
     milestones: ["Requirements gathered", "Design draft", "Family review", "Revisions", "Guest list ready", "Invitations sent"],
   },
   bartabandha: {
     label: "Bartabandha", path: "bartabandha", blurb: "Sacred thread ceremonies",
-    event: "Bartabandha Ceremony", greeting: "cordially invite you to grace the sacred Bartabandha ceremony",
+    event: "Bartabandha Ceremony", nepali: "शुभ व्रतबन्ध", greeting: "cordially invite you to grace the sacred Bartabandha ceremony",
     milestones: ["Requirements gathered", "Design draft", "Family review", "Revisions", "Guest list ready", "Invitations sent"],
   },
 };
@@ -75,9 +76,19 @@ export function parseGuestList(text: string): { name: string; relation: string }
     .filter((g) => g.name.length > 0);
 }
 
-const PUBLISHED_SITE = "https://studio-ledger-compass.lovable.app";
-/** Links are always shared on the public site; the editor preview isn't reachable by guests. */
+/**
+ * Links use the address the dashboard is opened on (e.g. the Vercel site).
+ * Set VITE_PUBLIC_SITE_URL to always share links on one public address instead.
+ */
 export function inviteBaseUrl(origin: string): string {
-  return /id-preview--|lovableproject\.com|localhost|127\.0\.0\.1/.test(origin) ? PUBLISHED_SITE : origin;
+  const fixed = (import.meta.env["VITE_PUBLIC_SITE_URL"] as string | undefined)?.trim().replace(/\/+$/, "");
+  return fixed || origin;
+}
+
+/** Readable event date, e.g. "Sunday, 14 February 2027". */
+export function formatEventDate(date: string): string {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return "";
+  const d = new Date(`${date}T00:00:00Z`);
+  return Number.isNaN(d.getTime()) ? "" : d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 }
 export const inviteUrl = (origin: string, slug: string) => `${inviteBaseUrl(origin)}/invite/${encodeURIComponent(slug)}`;
