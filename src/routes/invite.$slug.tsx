@@ -32,7 +32,7 @@ export const Route = createFileRoute("/invite/$slug")({
   },
   notFoundComponent: NotFound,
   errorComponent: ({ error }) => (
-    <Shell><p className="max-w-sm text-center font-lux text-2xl font-light">{error.message || "This invitation couldn't be opened. Please try again."}</p></Shell>
+    <Shell><p className="max-w-sm text-center font-lux text-2xl font-light">{(error instanceof Error && error.message) || "This invitation couldn't be opened. Please try again."}</p></Shell>
   ),
   component: InvitePage,
 });
