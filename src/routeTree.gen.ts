@@ -18,6 +18,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SiteRouteImport } from './routes/site'
 import { Route as TeamRouteImport } from './routes/team'
+import { Route as InviteSlugRouteImport } from './routes/invite.$slug'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
 import { Route as SiteIndexRouteImport } from './routes/site.index'
@@ -73,6 +74,11 @@ const SiteRoute = SiteRouteImport.update({
 const TeamRoute = TeamRouteImport.update({
   id: '/team',
   path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InviteSlugRoute = InviteSlugRouteImport.update({
+  id: '/invite/$slug',
+  path: '/invite/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof SettingsRoute
   '/site': typeof SiteRouteWithChildren
   '/team': typeof TeamRoute
+  '/invite/$slug': typeof InviteSlugRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/site/about': typeof SiteAboutRoute
   '/site/contact': typeof SiteContactRoute
@@ -162,6 +169,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/settings': typeof SettingsRoute
   '/team': typeof TeamRoute
+  '/invite/$slug': typeof InviteSlugRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/site/about': typeof SiteAboutRoute
   '/site/contact': typeof SiteContactRoute
@@ -185,6 +193,7 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRoute
   '/site': typeof SiteRouteWithChildren
   '/team': typeof TeamRoute
+  '/invite/$slug': typeof InviteSlugRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/site/about': typeof SiteAboutRoute
   '/site/contact': typeof SiteContactRoute
@@ -209,6 +218,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/site'
     | '/team'
+    | '/invite/$slug'
     | '/projects/$projectId'
     | '/site/about'
     | '/site/contact'
@@ -230,6 +240,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/settings'
     | '/team'
+    | '/invite/$slug'
     | '/projects/$projectId'
     | '/site/about'
     | '/site/contact'
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/site'
     | '/team'
+    | '/invite/$slug'
     | '/projects/$projectId'
     | '/site/about'
     | '/site/contact'
@@ -275,6 +287,7 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   SiteRoute: typeof SiteRouteWithChildren
   TeamRoute: typeof TeamRoute
+  InviteSlugRoute: typeof InviteSlugRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
   SoonModuleRoute: typeof SoonModuleRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
@@ -343,6 +356,13 @@ declare module '@tanstack/react-router' {
       path: '/team'
       fullPath: '/team'
       preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/invite/$slug': {
+      id: '/invite/$slug'
+      path: '/invite/$slug'
+      fullPath: '/invite/$slug'
+      preLoaderRoute: typeof InviteSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/': {
@@ -459,6 +479,7 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   SiteRoute: SiteRouteWithChildren,
   TeamRoute: TeamRoute,
+  InviteSlugRoute: InviteSlugRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRoute,
   SoonModuleRoute: SoonModuleRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
