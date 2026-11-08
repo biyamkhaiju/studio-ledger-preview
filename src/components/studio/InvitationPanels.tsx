@@ -39,6 +39,11 @@ export function InvitationDetails({ project, update }: { project: Project; updat
   );
 }
 
+function readableUrl(url: string) {
+  const short = url.replace(/^https?:\/\//, "");
+  try { return decodeURIComponent(short); } catch { return short; }
+}
+
 function whatsappLink(guest: Guest, url: string, event: string) {
   const text = `Dear ${guest.name}, you are warmly invited to our ${event}. Your personal invitation: ${url}`;
   let digits = guest.phone.replace(/\D/g, "");
@@ -133,7 +138,7 @@ export function GuestManager({ project }: { project: Project }) {
                   <tr key={g.id} className="border-t border-border/60 [&>td]:py-2.5">
                     <td><div className="font-medium">{g.name}</div>{g.relation && <div className="text-xs text-muted-foreground">{g.relation}</div>}</td>
                     <td className="text-muted-foreground">{g.phone || "—"}</td>
-                    <td className="max-w-[260px]"><a href={url} target="_blank" rel="noreferrer" className="block truncate text-xs text-primary hover:underline">{url.replace(/^https?:\/\//, "")}</a></td>
+                    <td className="max-w-[260px]"><a href={url} target="_blank" rel="noreferrer" className="block truncate text-xs text-primary hover:underline">{readableUrl(url)}</a></td>
                     <td className="whitespace-nowrap text-right">
                       <Button size="icon" variant="ghost" aria-label={`Copy link for ${g.name}`} title="Copy link" onClick={() => void copy(g)}>{copied === g.id ? <Check className="h-4 w-4 text-success" /> : <Copy className="h-4 w-4" />}</Button>
                       <Button size="icon" variant="ghost" asChild><a href={whatsappLink(g, url, event)} target="_blank" rel="noreferrer" aria-label={`Share with ${g.name} on WhatsApp`} title="Share on WhatsApp"><MessageCircle className="h-4 w-4" /></a></Button>
