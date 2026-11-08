@@ -7,6 +7,7 @@ import { useQuickCreate } from "@/components/studio/AppShell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { GuestManager, InvitationDetails } from "@/components/studio/InvitationPanels";
 
 export const Route = createFileRoute("/projects/$projectId")({
   head: () => ({
@@ -112,6 +113,13 @@ function ProjectPage() {
           <Row label="Description"><textarea defaultValue={p.description} onBlur={(e) => update({ description: e.target.value })} rows={3} className="w-full rounded-md border border-input bg-background p-2 text-sm" /></Row>
         </section>
       </div>
+
+      {p.division === "wedding" && (
+        <>
+          <InvitationDetails project={p} update={update} />
+          <GuestManager project={p} />
+        </>
+      )}
 
       <section className="panel p-5">
         <div className="mb-3 flex items-center justify-between">
