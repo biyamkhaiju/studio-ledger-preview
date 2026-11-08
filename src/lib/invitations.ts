@@ -10,6 +10,7 @@ export const CATEGORY_INFO: Record<InvitationCategory, {
   path: string;
   blurb: string;
   event: string;
+  nepali: string;
   greeting: string;
   milestones: string[];
 }> = {
@@ -75,9 +76,19 @@ export function parseGuestList(text: string): { name: string; relation: string }
     .filter((g) => g.name.length > 0);
 }
 
-const PUBLISHED_SITE = "https://studio-ledger-compass.lovable.app";
-/** Links are always shared on the public site; the editor preview isn't reachable by guests. */
+/**
+ * Links use the address the dashboard is opened on (e.g. the Vercel site).
+ * Set VITE_PUBLIC_SITE_URL to always share links on one public address instead.
+ */
 export function inviteBaseUrl(origin: string): string {
-  return /id-preview--|lovableproject\.com|localhost|127\.0\.0\.1/.test(origin) ? PUBLISHED_SITE : origin;
+  const fixed = (import.meta.env["VITE_PUBLIC_SITE_URL"] as string | undefined)?.trim().replace(/\/+$/, "");
+  return fixed || origin;
+}
+
+/** Readable event date, e.g. "Sunday, 14 February 2027". */
+export function formatEventDate(date: string): string {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return "";
+  const d = new Date(`${date}T00:00:00Z`);
+  return Number.isNaN(d.getTime()) ? "" : d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 }
 export const inviteUrl = (origin: string, slug: string) => `${inviteBaseUrl(origin)}/invite/${encodeURIComponent(slug)}`;
