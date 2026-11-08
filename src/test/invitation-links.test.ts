@@ -15,6 +15,6 @@ describe("Guest invitation links", () => {
     expect(parseGuestList("Sita Rai, Aunt\n\nRam Thapa")).toEqual([{ name: "Sita Rai", relation: "Aunt" }, { name: "Ram Thapa", relation: "" }]);
   });
   it("shows the event date in words", () => {
-    expect(formatEventDate("2027-02-14")).toBe("Sunday 14 February 2027");
+    expect(formatEventDate("2027-02-14")).toBe("Sunday, 14 February 2027");
   });
 });
