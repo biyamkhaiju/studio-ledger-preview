@@ -115,92 +115,6 @@ export type Database = {
           },
         ]
       }
-      inquiries: {
-        Row: {
-          created_at: string
-          email: string
-          event_date: string | null
-          id: string
-          message: string
-          name: string
-          notes: string
-          occasion: string
-          phone: string
-          status: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          email?: string
-          event_date?: string | null
-          id?: string
-          message?: string
-          name: string
-          notes?: string
-          occasion?: string
-          phone?: string
-          status?: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          email?: string
-          event_date?: string | null
-          id?: string
-          message?: string
-          name?: string
-          notes?: string
-          occasion?: string
-          phone?: string
-          status?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      invitation_guests: {
-        Row: {
-          created_at: string
-          id: string
-          name: string
-          phone: string
-          project_id: string
-          relation: string
-          slug: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          name: string
-          phone?: string
-          project_id: string
-          relation?: string
-          slug: string
-          updated_at?: string
-          user_id?: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          name?: string
-          phone?: string
-          project_id?: string
-          relation?: string
-          slug?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "invitation_guests_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       invoice_items: {
         Row: {
           created_at: string
@@ -427,13 +341,7 @@ export type Database = {
           deadline: string | null
           description: string
           division: string
-          event_date: string | null
-          event_time: string
-          event_venue: string
-          hosts: string
           id: string
-          invitation_category: string | null
-          invitation_message: string
           manual_progress: number
           milestones: Json
           name: string
@@ -449,13 +357,7 @@ export type Database = {
           deadline?: string | null
           description?: string
           division?: string
-          event_date?: string | null
-          event_time?: string
-          event_venue?: string
-          hosts?: string
           id?: string
-          invitation_category?: string | null
-          invitation_message?: string
           manual_progress?: number
           milestones?: Json
           name: string
@@ -471,13 +373,7 @@ export type Database = {
           deadline?: string | null
           description?: string
           division?: string
-          event_date?: string | null
-          event_time?: string
-          event_venue?: string
-          hosts?: string
           id?: string
-          invitation_category?: string | null
-          invitation_message?: string
           manual_progress?: number
           milestones?: Json
           name?: string
@@ -531,7 +427,7 @@ export type Database = {
           created_by?: string | null
           description?: string
           id?: string
-          name: string
+          name?: string
           photo_path?: string | null
           role?: string
           status?: string
@@ -556,19 +452,6 @@ export type Database = {
     }
     Functions: {
       apply_ledger_changes: { Args: { changes: Json }; Returns: undefined }
-      get_invitation: {
-        Args: { _slug: string }
-        Returns: {
-          category: string
-          event_date: string
-          event_time: string
-          event_venue: string
-          guest_name: string
-          hosts: string
-          message: string
-          relation: string
-        }[]
-      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
