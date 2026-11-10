@@ -566,7 +566,6 @@ export type Database = {
           guest_name: string
           hosts: string
           message: string
-          relation: string
         }[]
       }
       has_role: {

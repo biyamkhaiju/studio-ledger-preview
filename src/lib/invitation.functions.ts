@@ -5,7 +5,6 @@ import { INVITATION_CATEGORIES, type InvitationCategory } from "./invitations";
 
 export type GuestInvitation = {
   guestName: string;
-  relation: string;
   category: InvitationCategory;
   hosts: string;
   eventDate: string;
@@ -49,7 +48,6 @@ export const getGuestInvitation = createServerFn({ method: "GET" })
     const category = (INVITATION_CATEGORIES as readonly string[]).includes(row.category) ? (row.category as InvitationCategory) : "wedding";
     return {
       guestName: row.guest_name,
-      relation: row.relation ?? "",
       category,
       hosts: row.hosts ?? "",
       eventDate: row.event_date ?? "",
