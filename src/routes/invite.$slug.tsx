@@ -87,7 +87,8 @@ function InvitePage() {
           <article className="relative animate-brand-rise">
             <div className="arch relative overflow-hidden border border-brand-gold/40 bg-brand-ink-raised px-8 pb-12 pt-16 text-center shadow-brand">
               <span className="arch pointer-events-none absolute inset-3 border border-brand-ember/30" aria-hidden />
-              <p className="font-lux-sans text-[10px] uppercase tracking-[0.4em] text-brand-cream/60">Dear {inv.guestName},</p>
+              <p className="font-lux-sans text-[10px] uppercase tracking-[0.4em] text-brand-cream/60">Dear</p>
+              <p lang="ne" className="mt-1 font-lux text-xl text-brand-gold">{inv.guestName},</p>
               <p className="mt-8 font-lux text-4xl text-ember-gold">{info.nepali}</p>
               <h1 className="mt-4 break-words font-lux text-4xl font-light leading-tight sm:text-5xl">{hosts}</h1>
               <p className="mt-3 font-lux-sans text-xs font-light text-brand-cream/60">{info.greeting}</p>
