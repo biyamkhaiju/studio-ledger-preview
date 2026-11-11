@@ -10,6 +10,6 @@
 - [ ] Import existing records and users from the old database — waiting on the user's exports.
 - [ ] Profile: reliable name + photo update (large phone photos resized before upload).
 - [ ] Rename Wedding Projects → Invitation Projects with categories: Wedding, Anniversary, Baby Born, Bartabandha (own section each).
-- [ ] Guest lists per invitation project (add, bulk add, edit, delete) stored in the database.
-- [ ] Unique personalized public invitation link per guest, built from their name.
+- [x] Guest lists per invitation project (add, bulk add, edit, delete) stored in the database.
+- [x] Unique personalized public invitation link per guest, built from their name.
 - [ ] Full add/edit/delete: clients (edit/delete missing), payments & expenses (edit missing).
